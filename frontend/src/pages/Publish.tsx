@@ -8,46 +8,46 @@ export const Publish = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
-  return (
-    <div>
-      <Appbar></Appbar>
-      <div className="flex justify-center w-full pt-8">
-        <div className="max-w-screen-lg w-full">
-          <input
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-            type="text"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            placeholder="Title"
-          />
 
-          <TextEditor
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          ></TextEditor>
-          <button
-            onClick={async () => {
-              const response = await axios.post(
-                `${BACKEND_URL}/api/v1/blog`,
-                {
-                  title,
-                  content: description,
-                },
-                {
-                  headers: {
-                    Authorization: localStorage.getItem("token"),
+  return (
+    <div className="bg-white text-black min-h-screen">
+      <Appbar />
+      <div className="flex justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-screen-lg w-full">
+          <div className="bg-gray-100 p-8 rounded-lg shadow-lg border border-gray-200">
+            <h2 className="text-3xl font-bold mb-6">Create a New Post</h2>
+
+            <input
+              onChange={(e) => setTitle(e.target.value)}
+              type="text"
+              className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4 mb-4 shadow-sm"
+              placeholder="Enter post title"
+            />
+
+            <TextEditor onChange={(e) => setDescription(e.target.value)} />
+
+            <button
+              onClick={async () => {
+                const response = await axios.post(
+                  `${BACKEND_URL}/api/v1/blog`,
+                  {
+                    title,
+                    content: description,
                   },
-                },
-              );
-              navigate(`/blog/${response.data.id}`);
-            }}
-            type="submit"
-            className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-          >
-            Publish post
-          </button>
+                  {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                  },
+                );
+                navigate(`/blog/${response.data.id}`);
+              }}
+              type="submit"
+              className="mt-6 inline-flex items-center px-6 py-3 text-sm font-medium text-center text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
+            >
+              Publish Post
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -60,23 +60,16 @@ function TextEditor({
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }) {
   return (
-    <div className="mt-2">
-      <div className="w-full mb-4">
-        <div className="flex items-center justify-between">
-          <div className="my-2 bg-white rounded-b-lg w-full">
-            <label className="sr-only">Publish post</label>
-            <textarea
-              onChange={onChange}
-              id="editor"
-              rows={8}
-              className="focus:outline-none block w-full px-0 text-sm text-gray-800 bg-white border-0 pl-2"
-              placeholder="Write an article ... "
-              required
-            />
-          </div>
-        </div>
-      </div>
+    <div className="mt-6">
+      <label className="block text-lg font-medium mb-2">Article Content</label>
+      <textarea
+        onChange={onChange}
+        id="editor"
+        rows={8}
+        className="block w-full px-4 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        placeholder="Write your article here..."
+        required
+      />
     </div>
   );
 }
-

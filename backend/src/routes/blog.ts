@@ -1,7 +1,7 @@
 import { createBlogPost, updateBlogPost } from "100amanmedcom";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
-import { Hono } from "hono";
+import { Context, Hono, Next } from "hono";
 import { verify } from "hono/jwt";
 
 export const blogRouter = new Hono<{
@@ -14,7 +14,7 @@ export const blogRouter = new Hono<{
   };
 }>();
 
-blogRouter.use("/*", async (c, next) => {
+blogRouter.use("/*", async (c: Context, next: Next) => {
   const authHeader = c.req.header("authorization") || "";
   try {
     const user = await verify(authHeader, c.env.JWT_SECRET);
@@ -35,7 +35,7 @@ blogRouter.use("/*", async (c, next) => {
   }
 });
 
-blogRouter.post("/", async (c) => {
+blogRouter.post("/", async (c: Context) => {
   const body = await c.req.json();
   const { success } = createBlogPost.safeParse(body);
   if (!success) {
@@ -61,7 +61,7 @@ blogRouter.post("/", async (c) => {
   });
 });
 
-blogRouter.put("/", async (c) => {
+blogRouter.put("/", async (c: Context) => {
   const body = await c.req.json();
   const { success } = updateBlogPost.safeParse(body);
   if (!success) {
@@ -88,8 +88,7 @@ blogRouter.put("/", async (c) => {
   });
 });
 
-// TODO: do pagination
-blogRouter.get("/bulk", async (c) => {
+blogRouter.get("/bulk", async (c: Context) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -112,7 +111,7 @@ blogRouter.get("/bulk", async (c) => {
   });
 });
 
-blogRouter.get("/:id", async (c) => {
+blogRouter.get("/:id", async (c: Context) => {
   const id = c.req.param("id");
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,

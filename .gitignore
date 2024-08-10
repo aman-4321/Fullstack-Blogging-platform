@@ -1,9 +1,5 @@
-# .gitignore
-
-# Node modules
 node_modules/
 
-# Prisma
 migrations/
 
 # Cloudflare
@@ -12,6 +8,5 @@ wrangler.toml
 
 .env
 
-# TypeScript
 dist/
 

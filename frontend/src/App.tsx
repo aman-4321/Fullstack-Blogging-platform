@@ -22,5 +22,3 @@ function App() {
 }
 
 export default App;
-
-// TODO: add a skeleton page, making the editor much better, cacheing all of these so we don't see loader again and again, log out option, the signup page should redirect to dasboard if the user is logged in
