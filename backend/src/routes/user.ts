@@ -15,7 +15,7 @@ userRouter.post("/signup", async (c: Context) => {
   const body = await c.req.json();
   const { success } = signupInput.safeParse(body);
   if (!success) {
-    c.status(411);
+    c.status(400);
     return c.json({
       message: "Inputs not correct",
     });
@@ -41,7 +41,7 @@ userRouter.post("/signup", async (c: Context) => {
     return c.text(jwt);
   } catch (e) {
     console.log(e);
-    c.status(411);
+    c.status(500);
     return c.text("Error while signing up");
   }
 });
