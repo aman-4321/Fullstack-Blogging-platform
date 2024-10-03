@@ -1,4 +1,4 @@
-# Paytm-Transaction Simulator
+# Blogging Platform
 
 Welcome to the Fullstack Blogging Platform! This project provides a comprehensive blogging solution with a serverless backend and a responsive frontend. Users can sign in, sign up, publish, and view blogs. This README will guide you through setting up the project locally and deploying it to the cloud.
 
@@ -16,7 +16,7 @@ Welcome to the Fullstack Blogging Platform! This project provides a comprehensiv
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com//paytm-transaction-simulator.git
+   git clone https://github.com//Fullstack-Blogging-platform.git
    cd paytm-transaction-simulator
    ```
 
