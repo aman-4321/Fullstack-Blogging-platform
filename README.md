@@ -17,7 +17,7 @@ Welcome to the Fullstack Blogging Platform! This project provides a comprehensiv
 
    ```bash
    git clone https://github.com//Fullstack-Blogging-platform.git
-   cd paytm-transaction-simulator
+   cd Fullstack-Blogging-platform
    ```
 
 2. **Setup Backend:**
