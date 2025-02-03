@@ -17,22 +17,22 @@ export const BlogCard = ({
 }: BlogCardProps) => {
   return (
     <Link to={`/blog/${id}`}>
-      <div className="p-4 border-b border-slate-200 pb-4 w-screen max-w-screen-lg cursor-pointer">
-        <div className="flex">
+      <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100">
+        <div className="flex items-center mb-4">
           <Avatar name={authorName}></Avatar>
-          <div className="font-extralight pl-2 text-sm flex justify-center flex-col">
-            {authorName}
-          </div>
-          <div className="flex flex-col pl-2 justify-center">
+          <div className="font-medium pl-2 text-gray-700">{authorName}</div>
+          <div className="flex items-center pl-2">
             <Circle></Circle>
           </div>
-          <div className="pl-2 font-thin text-slate-500 text-sm flex justify-center flex-col">
-            {publishedDate}
-          </div>
+          <div className="pl-2 text-gray-500 text-sm">{publishedDate}</div>
         </div>
-        <div className="text-xl font-semibold pt-2">{title}</div>
-        <div className="text-md font-thin">{content.slice(0, 100) + "..."}</div>
-        <div className="text-slate-500 text-sm font-thin pt-2">{`${Math.ceil(content.length / 100)} minute(s) read`}</div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+          {title}
+        </h2>
+        <p className="text-gray-600 mb-4 line-clamp-2">{content}</p>
+        <div className="flex items-center text-sm text-gray-500">
+          <span>{`${Math.ceil(content.length / 100)} minute read`}</span>
+        </div>
       </div>
     </Link>
   );
@@ -51,10 +51,14 @@ export function Avatar({
 }) {
   return (
     <div
-      className={`relative inline-flex items-center justify-center overflow-hidden bg-gray-600 rounded-full ${size === "small" ? "w-6 h-6" : "w-10 h-10"}`}
+      className={`relative inline-flex items-center justify-center overflow-hidden bg-gray-600 rounded-full ${
+        size === "small" ? "w-6 h-6" : "w-10 h-10"
+      }`}
     >
       <span
-        className={` ${size === "small" ? "text-xs" : "text-md"} font-extralight text-gray-600 dark:text-gray-300`}
+        className={` ${
+          size === "small" ? "text-xs" : "text-md"
+        } font-extralight text-gray-600 dark:text-gray-300`}
       >
         {name[0]}
       </span>

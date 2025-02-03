@@ -22,12 +22,11 @@ export const Publish: React.FC = () => {
       const response = await axios.post(
         `${BACKEND_URL}/api/v1/blog`,
         { title, content: description },
-        { headers: { Authorization: localStorage.getItem("token") } },
+        { headers: { Authorization: localStorage.getItem("token") } }
       );
       navigate(`/blog/${response.data.id}`);
     } catch (error) {
       console.error("Error publishing post:", error);
-      // You might want to show an error message to the user here
     }
   };
 
