@@ -5,13 +5,13 @@
   },
   "dependencies": {
     "@prisma/client": "^5.13.0",
-    "@prisma/extension-accelerate": "^1.0.0",
+    "@prisma/extension-accelerate": "^1.2.1",
     "100amanmedcom": "^1.0.0",
-    "hono": "^4.0.8"
+    "hono": "^4.6.20"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240208.0",
-    "prisma": "^5.13.0",
-    "wrangler": "^3.52.0"
+    "@cloudflare/workers-types": "^4.20250129.0",
+    "prisma": "^6.3.1",
+    "wrangler": "^3.107.3"
   }
 }
